@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kate Yang – Business Card</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      background: #eef1f6;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      padding: 40px 20px;
+    }
+
+    .label {
+      color: #94a3b8;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    /* Card wrapper — standard business card ratio 3.5 × 2 in */
+    .card {
+      width: 350px;
+      height: 200px;
+      border-radius: 14px;
+      padding: 26px 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10), 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    /* ─── FRONT ─── */
+    .card-front {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f6ff 100%);
+      border: 1px solid #dde6f0;
+    }
+
+    /* decorative circle top-right */
+    .card-front::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* blue accent bar on the left */
+    .card-front::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #2563eb 0%, #60a5fa 100%);
+      border-radius: 14px 0 0 14px;
+    }
+
+    .card-front .name {
+      font-size: 21px;
+      font-weight: 700;
+      color: #1e293b;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+
+    .card-front .title {
+      font-size: 10.5px;
+      color: #2563eb;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 3px;
+      font-weight: 600;
+    }
+
+    .card-front .team {
+      font-size: 10px;
+      color: #94a3b8;
+      margin-top: 2px;
+      letter-spacing: 0.3px;
+    }
+
+    .divider {
+      width: 32px;
+      height: 1.5px;
+      background: linear-gradient(90deg, #2563eb, transparent);
+      margin: 10px 0;
+      border-radius: 2px;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5px;
+    }
+
+    .contact-list li {
+      font-size: 9.5px;
+      color: #475569;
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      line-height: 1.4;
+    }
+
+    .contact-list li .lbl {
+      font-size: 8.5px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      flex-shrink: 0;
+      min-width: 46px;
+    }
+
+    .contact-list li a {
+      color: #475569;
+      text-decoration: none;
+    }
+
+    .contact-list li a:hover {
+      color: #2563eb;
+    }
+
+    /* ─── BACK ─── */
+    .card-back {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f6ff 100%);
+      border: 1px solid #dde6f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card-back::before {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* purple accent bar */
+    .card-back::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #2563eb 0%, #60a5fa 100%);
+      border-radius: 14px 0 0 14px;
+    }
+
+    .card-back .project-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e293b;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+
+    .card-back .project-subtitle {
+      font-size: 10px;
+      color: #2563eb;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-top: 3px;
+      font-weight: 600;
+    }
+
+    .card-back .divider {
+      background: linear-gradient(90deg, #2563eb, transparent);
+    }
+
+    .stack-label {
+      font-size: 8.5px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .tech-pills {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .pill {
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.28);
+      color: #2563eb;
+      font-size: 9px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .tagline {
+      font-size: 9.5px;
+      color: #64748b;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .print-hint {
+      color: #94a3b8;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media print {
+      body { background: white; gap: 20px; }
+      .label, .print-hint { display: none; }
+      .card { box-shadow: none; border: 1px solid #dde; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="label">Front &nbsp;/&nbsp; 名片正面</div>
+
+  <!-- ── FRONT ── -->
+  <div class="card card-front">
+    <div class="name">Kate Yang</div>
+    <div class="title">Full-Stack Developer</div>
+    <div class="team">Conestoga College&nbsp;·&nbsp;Nova Lab</div>
+
+    <div class="divider"></div>
+
+    <ul class="contact-list">
+      <li>
+        <span class="lbl">Email</span>
+        <a href="mailto:Kyang8971@conestogac.on.ca">kyang8971@conestogac.on.ca</a>
+      </li>
+      <li>
+        <span class="lbl">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/kateyangqingru/" target="_blank">linkedin.com/in/kateyangqingru</a>
+      </li>
+      <li>
+        <span class="lbl">GitHub</span>
+        <a href="https://github.com/kateyang1998" target="_blank">github.com/kateyang1998</a>
+      </li>
+      <li>
+        <span class="lbl">Portfolio</span>
+        <a href="https://kateyang1998.github.io/kateyang/" target="_blank">kateyang1998.github.io/kateyang</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="label">Back &nbsp;/&nbsp; 名片背面</div>
+
+  <!-- ── BACK ── -->
+  <div class="card card-back">
+    <div class="project-name">OSCAR Mobile Pro</div>
+    <div class="project-subtitle">A Modern Mobile EMR Extension</div>
+
+    <div class="divider"></div>
+
+    <div class="stack-label">Core Tech Stack</div>
+    <div class="tech-pills">
+      <span class="pill">React</span>
+      <span class="pill">Node.js</span>
+      <span class="pill">Express.js</span>
+      <span class="pill">SQLite</span>
+    </div>
+
+    <div class="tagline">Empowering clinicians with real-time data at the point of care.</div>
+  </div>
+
+  <p class="print-hint">Tip: use browser Print (Ctrl/Cmd+P) → Save as PDF for a print-ready copy.</p>
+
+</body>
+</html>
